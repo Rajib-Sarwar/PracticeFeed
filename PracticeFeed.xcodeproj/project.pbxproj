@@ -77,8 +77,7 @@
 			children = (
 				219D1DD82CDAFD22008AAEA4 /* PracticeFeed.h */,
 				219D1DD92CDAFD22008AAEA4 /* PracticeFeed.docc */,
-				219D1DEF2CDAFE6B008AAEA4 /* FeedItem.swift */,
-				219D1DF12CDAFEF5008AAEA4 /* FeedLoader.swift */,
+				219D1DF32CDAFFB5008AAEA4 /* Feed Feature */,
 			);
 			path = PracticeFeed;
 			sourceTree = "<group>";
@@ -89,6 +88,15 @@
 				219D1DE42CDAFD23008AAEA4 /* PracticeFeedTests.swift */,
 			);
 			path = PracticeFeedTests;
+			sourceTree = "<group>";
+		};
+		219D1DF32CDAFFB5008AAEA4 /* Feed Feature */ = {
+			isa = PBXGroup;
+			children = (
+				219D1DEF2CDAFE6B008AAEA4 /* FeedItem.swift */,
+				219D1DF12CDAFEF5008AAEA4 /* FeedLoader.swift */,
+			);
+			path = "Feed Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
