@@ -11,6 +11,7 @@
 		219D1DE02CDAFD23008AAEA4 /* PracticeFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219D1DD52CDAFD22008AAEA4 /* PracticeFeed.framework */; };
 		219D1DE52CDAFD23008AAEA4 /* PracticeFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D1DE42CDAFD23008AAEA4 /* PracticeFeedTests.swift */; };
 		219D1DE62CDAFD23008AAEA4 /* PracticeFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 219D1DD82CDAFD22008AAEA4 /* PracticeFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		219D1DF02CDAFE6B008AAEA4 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D1DEF2CDAFE6B008AAEA4 /* FeedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		219D1DD92CDAFD22008AAEA4 /* PracticeFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = PracticeFeed.docc; sourceTree = "<group>"; };
 		219D1DDF2CDAFD23008AAEA4 /* PracticeFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PracticeFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		219D1DE42CDAFD23008AAEA4 /* PracticeFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeFeedTests.swift; sourceTree = "<group>"; };
+		219D1DEF2CDAFE6B008AAEA4 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				219D1DD82CDAFD22008AAEA4 /* PracticeFeed.h */,
 				219D1DD92CDAFD22008AAEA4 /* PracticeFeed.docc */,
+				219D1DEF2CDAFE6B008AAEA4 /* FeedItem.swift */,
 			);
 			path = PracticeFeed;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219D1DF02CDAFE6B008AAEA4 /* FeedItem.swift in Sources */,
 				219D1DDA2CDAFD22008AAEA4 /* PracticeFeed.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +410,7 @@
 		219D1DED2CDAFD23008AAEA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWS839S5XM;
@@ -421,6 +426,7 @@
 		219D1DEE2CDAFD23008AAEA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWS839S5XM;
