@@ -25,14 +25,11 @@ internal final class FeedItemsMapper {
         var item: FeedItem {
             return FeedItem(id: id, description: description, location: location, imageURL: image)
         }
-       
     }
     
     private static var OK_200: Int { return 200 }
     
     internal static func map(_ response: HTTPURLResponse, _ data: Data) throws -> [FeedItem] {
-        
-        
         let root = try JSONDecoder().decode(Root.self, from: data)
         return root.items.map { $0.item }
     }
@@ -46,7 +43,6 @@ internal final class FeedItemsMapper {
         }
         
         return .success(root.feed)
-        
     }
 }
 
