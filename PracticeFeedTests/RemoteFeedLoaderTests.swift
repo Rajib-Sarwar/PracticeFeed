@@ -37,10 +37,10 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (client, sut) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(.connectivity)) {
+        expect(sut, toCompleteWith: .failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
-        }
+        })
     }
     
     func test_load_deliversErrorOnNon200HTTPResponse() {
@@ -49,28 +49,28 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(.invalidData)) {
+            expect(sut, toCompleteWith: .failure(.invalidData), when: {
                 client.complete(withStatusCode: code, at: index)
-            }
+            })
         }
     }
     
     func test_load_deliversErrorOn200HTTPResponseOnInvalidJSON() {
         let (client, sut) = makeSUT()
          
-        expect(sut, toCompleteWith: .failure(.invalidData)) {
+        expect(sut, toCompleteWith: .failure(.invalidData), when: {
             let ivalidJSON = Data("invalid data".utf8)
             client.complete(withStatusCode: 200, data: ivalidJSON)
-        }
+        })
     }
     
     func test_load_deliversErrorOn200HTTPResponseOnEmptyJSONList() {
         let (client, sut) = makeSUT()
          
-        expect(sut, toCompleteWith: .success([])) {
+        expect(sut, toCompleteWith: .success([]), when: {
             let emptyListJSON = Data("{\"items\": []}".utf8)
             client.complete(withStatusCode: 200, data: emptyListJSON)
-        }
+        })
     }
 
     // MARK: Helpers
