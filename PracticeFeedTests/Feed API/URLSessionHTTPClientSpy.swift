@@ -181,11 +181,6 @@ class URLSessionHTTPClientSpy: XCTestCase {
         }
         
         override func startLoading() {
-            if let requestObserver = URLProtocolStub.requestObserver {
-                requestObserver(request)
-                URLProtocolStub.requestObserver = nil // Fulfill only once
-            }
-            
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
             }
