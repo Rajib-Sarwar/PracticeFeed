@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "65E91701-6723-4286-A712-58453E689098",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random",
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PracticeFeed.xcodeproj",
+        "identifier" : "219D1DDE2CDAFD23008AAEA4",
+        "name" : "PracticeFeedTests"
+      }
+    }
+  ],
+  "version" : 1
+}

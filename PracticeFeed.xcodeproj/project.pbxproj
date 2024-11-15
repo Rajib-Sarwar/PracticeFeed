@@ -47,6 +47,7 @@
 		213643832CE6A47E00FCF14E /* PracticeFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PracticeFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		213643852CE6A47E00FCF14E /* PracticeFeedAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeFeedAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		2136438E2CE6ADD300FCF14E /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
+		2136438F2CE6CE3100FCF14E /* PracticeFeed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PracticeFeed.xctestplan; sourceTree = "<group>"; };
 		218C47B52CDD26D700D4A204 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 		218C47B82CDD3F3300D4A204 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		218C47BB2CDFCBEF00D4A204 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		219D1DCB2CDAFD22008AAEA4 = {
 			isa = PBXGroup;
 			children = (
+				2136438F2CE6CE3100FCF14E /* PracticeFeed.xctestplan */,
 				2136438E2CE6ADD300FCF14E /* CI.xctestplan */,
 				219D1DD72CDAFD22008AAEA4 /* PracticeFeed */,
 				219D1DE32CDAFD23008AAEA4 /* PracticeFeedTests */,

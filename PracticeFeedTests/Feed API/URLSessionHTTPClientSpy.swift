@@ -22,7 +22,7 @@ class URLSessionHTTPClientSpy: XCTestCase {
     
     func test_getFromURL_performGETRequestWithURL() {
         let exp = expectation(description: "Wait for request")
-        
+
         URLProtocolStub.observeRequest { request in
             XCTAssertEqual(request.url, self.anyURL())
             XCTAssertEqual(request.httpMethod, "GET")
@@ -181,6 +181,11 @@ class URLSessionHTTPClientSpy: XCTestCase {
         }
         
         override func startLoading() {
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                return requestObserver(request)
+            }
+
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
             }
