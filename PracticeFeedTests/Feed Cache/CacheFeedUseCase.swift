@@ -17,8 +17,9 @@ class LocalFeedLoader {
         self.currentDate = currentDate
     }
     
-    public func save(_ items: [FeedItem]) {
+    public func save(_ items: [FeedItem], completion: @escaping (Error?) -> Void) {
         store.deleteCahedFeed { [unowned self] error in
+            completion(error)
             if error == nil {
                 store.insert(items, timestamp: self.currentDate())
             }
@@ -67,7 +68,7 @@ class CacheFeedUseCase: XCTestCase {
     func test_save_requestCacheDeletion() {
         let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT()
-        sut.save(items)
+        sut.save(items) { _ in }
         
         XCTAssertEqual(store.receiveMessages, [.deleteCacheFeed])
     }
@@ -77,7 +78,7 @@ class CacheFeedUseCase: XCTestCase {
         let (sut, store) = makeSUT()
         let deletionError = anyNSError()
         
-        sut.save(items)
+        sut.save(items) { _ in }
         store.completeDeletion(with: deletionError)
         
         XCTAssertEqual(store.receiveMessages, [.deleteCacheFeed])
@@ -88,10 +89,28 @@ class CacheFeedUseCase: XCTestCase {
         let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT(currentDate: { timestamp })
 
-        sut.save(items)
+        sut.save(items) { _ in }
         store.completeDeletionSuccessfully()
         
         XCTAssertEqual(store.receiveMessages, [.deleteCacheFeed, .insert(items, timestamp)])
+    }
+    
+    func test_save_failsOnDeletionerror() {
+        let items = [uniqueItem(), uniqueItem()]
+        let (sut, store) = makeSUT()
+        let deletionError = anyNSError()
+        
+        let exp = expectation(description: "Wait to save completion")
+        
+        var receivedError: Error?
+        sut.save(items) { error in
+            receivedError = error
+            exp.fulfill()
+        }
+        store.completeDeletion(with: deletionError)
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as NSError?, deletionError)
     }
     
     // MARK: Helpers
