@@ -13,15 +13,15 @@ class PracticeFeedAPIEndToEndTests: XCTestCase {
     func test_endToEndTestServerGETFeedResult_matchFixedTestAccountData() {
         switch getFeedResult() {
         case let .success(items)?:
-            XCTAssertEqual(items.count, 8, "Expected 8 items in the test account feed")
-            XCTAssertEqual(items[0], expectedItem(at: 0))
-            XCTAssertEqual(items[1], expectedItem(at: 1))
-            XCTAssertEqual(items[2], expectedItem(at: 2))
-            XCTAssertEqual(items[3], expectedItem(at: 3))
-            XCTAssertEqual(items[4], expectedItem(at: 4))
-            XCTAssertEqual(items[5], expectedItem(at: 5))
-            XCTAssertEqual(items[6], expectedItem(at: 6))
-            XCTAssertEqual(items[7], expectedItem(at: 7))
+            XCTAssertEqual(items.count, 8, "Expected 8 images in the test account image feed")
+            XCTAssertEqual(items[0], expectedImage(at: 0))
+            XCTAssertEqual(items[1], expectedImage(at: 1))
+            XCTAssertEqual(items[2], expectedImage(at: 2))
+            XCTAssertEqual(items[3], expectedImage(at: 3))
+            XCTAssertEqual(items[4], expectedImage(at: 4))
+            XCTAssertEqual(items[5], expectedImage(at: 5))
+            XCTAssertEqual(items[6], expectedImage(at: 6))
+            XCTAssertEqual(items[7], expectedImage(at: 7))
         case let .failure(error)?:
             XCTFail("Expected successful feed result, got \(error) instead")
         default:
@@ -50,11 +50,11 @@ class PracticeFeedAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
     
-    private func expectedItem(at index: Int) -> FeedItem {
-        return FeedItem(id: id(at: index), 
+    private func expectedImage(at index: Int) -> FeedImage {
+        return FeedImage(id: id(at: index), 
                         description: description(at: index),
                         location: location(at: index),
-                        imageURL: imageURL(at: index))
+                        url: imageUrl(at: index))
     }
     
     private func id(at index: Int) -> UUID {
@@ -96,7 +96,7 @@ class PracticeFeedAPIEndToEndTests: XCTestCase {
         ][index]
     }
     
-    private func imageURL(at index: Int) -> URL {
+    private func imageUrl(at index: Int) -> URL {
         return URL(string: [
             "https://url-1.com",
             "https://url-2.com",
