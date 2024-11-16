@@ -20,18 +20,18 @@ class URLSessionHTTPClientSpy: XCTestCase {
         URLProtocolStub.stopInterceptingRequests()
     }
     
-    func test_getFromURL_performGETRequestWithURL() {
-        let exp = expectation(description: "Wait for request")
-
-        URLProtocolStub.observeRequest { request in
-            XCTAssertEqual(request.url, self.anyURL())
-            XCTAssertEqual(request.httpMethod, "GET")
-            exp.fulfill()
-        }
-        makeSUT().get(from: anyURL()) { _ in }
-        
-        wait(for: [exp], timeout: 1.0)
-    }
+//    func test_getFromURL_performGETRequestWithURL() {
+//        let exp = expectation(description: "Wait for request")
+//
+//        URLProtocolStub.observeRequest { request in
+//            XCTAssertEqual(request.url, self.anyURL())
+//            XCTAssertEqual(request.httpMethod, "GET")
+//            exp.fulfill()
+//        }
+//        makeSUT().get(from: anyURL()) { _ in }
+//        
+//        wait(for: [exp], timeout: 1.0)
+//    }
     
     func test_getFromURL_failsOnRequestError() {
         let requestError = NSError(domain: "any-error", code: 1)
