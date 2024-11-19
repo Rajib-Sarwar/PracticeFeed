@@ -7,7 +7,9 @@
 
 import Foundation
 
-private class FeedCachePolicy {
+private final class FeedCachePolicy {
+    private init() {}
+    
     private static let calender = Calendar(identifier: .gregorian)
    
     private static var maxCacheAgeInDays: Int {
@@ -24,7 +26,6 @@ private class FeedCachePolicy {
 
 public class LocalFeedLoader {
     private let store: FeedStore
-    
     private let currentDate: () -> Date
     
     public init(store: FeedStore, currentDate: @escaping () -> Date) {
