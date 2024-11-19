@@ -56,7 +56,6 @@ public class LocalFeedLoader {
             case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(feed.toModels()))
             case .found:
-                self.store.deleteCahedFeed { _ in }
                 completion(.success([]))
             case .empty:
                 completion(.success([]))
@@ -69,8 +68,9 @@ public class LocalFeedLoader {
             switch result {
             case .failure:
                 self.store.deleteCahedFeed { _ in }
-            default:
-                break
+            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, against: self.currentDate()):
+                self.store.deleteCahedFeed { _ in }
+            case .empty, .found: break
             }
         }
     }
