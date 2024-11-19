@@ -25,15 +25,17 @@ private class FeedCachePolicy {
 public class LocalFeedLoader {
     private let store: FeedStore
     
-    public typealias LoadResult = LoadFeedResult
-    public typealias SaveResult = Error?
     private let currentDate: () -> Date
     
     public init(store: FeedStore, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
     }
-    
+}
+
+extension LocalFeedLoader {
+    public typealias SaveResult = Error?
+
     public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.deleteCahedFeed { [weak self] error in
             guard let self = self else { return }
@@ -46,6 +48,18 @@ public class LocalFeedLoader {
         }
     }
     
+    private func cache(_ feed: [FeedImage], with completion: @escaping (SaveResult) -> Void) {
+        store.insert(feed.toLocal(), timestamp: self.currentDate(), completion: { [weak self] error in
+            guard self != nil else { return }
+            
+            completion(error)
+        })
+    }
+}
+
+extension LocalFeedLoader {
+    public typealias LoadResult = LoadFeedResult
+
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard let self = self else { return }
@@ -60,7 +74,9 @@ public class LocalFeedLoader {
             }
         }
     }
-    
+}
+
+extension LocalFeedLoader {
     public func validateCache() {
         store.retrieve { [weak self] result in
             guard let self = self else { return }
@@ -73,14 +89,6 @@ public class LocalFeedLoader {
             case .empty, .found: break
             }
         }
-    }
-    
-    private func cache(_ feed: [FeedImage], with completion: @escaping (SaveResult) -> Void) {
-        store.insert(feed.toLocal(), timestamp: self.currentDate(), completion: { [weak self] error in
-            guard self != nil else { return }
-            
-            completion(error)
-        })
     }
 }
 
