@@ -9,7 +9,7 @@ import XCTest
 import PracticeFeed
 
 class CodableFeedStore {
-    struct Cache: Codable {
+    private struct Cache: Codable {
         let feed: [CodableFeedImage]
         let timestamp: Date
         
@@ -19,10 +19,10 @@ class CodableFeedStore {
     }
     
     private struct CodableFeedImage: Codable {
-        public let id: UUID
-        public let description: String?
-        public let location: String?
-        public let url: URL
+        private let id: UUID
+        private let description: String?
+        private let location: String?
+        private let url: URL
         
         init(_ image: LocalFeedImage) {
             id = image.id
@@ -74,7 +74,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieve_deliverEmptyOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
         sut.retrieve { result in
             switch result {
@@ -90,7 +90,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieve_hasNoSideEffectOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
         sut.retrieve { firstResult in
             sut.retrieve { secondResult in
@@ -108,7 +108,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieveAfterInsertingToEmptyCache_deliversInsertedValues() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         let feed = uniqueImageFeed().local
         let timestamp = Date()
         let exp = expectation(description: "Wait for cache retrieval")
@@ -128,5 +128,11 @@ class CodableFeedStoreTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    // MARK: Helpers
+    
+    private func makeSUT() -> CodableFeedStore {
+        return CodableFeedStore()
     }
 }
