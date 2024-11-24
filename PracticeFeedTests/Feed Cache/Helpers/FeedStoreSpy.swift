@@ -9,6 +9,7 @@ import Foundation
 import PracticeFeed
 
 internal class FeedStoreSpy: FeedStore {
+    
     enum ReceivedMessages: Equatable {
         case deleteCacheFeed
         case insert([LocalFeedImage], Date)
@@ -21,7 +22,7 @@ internal class FeedStoreSpy: FeedStore {
     private var insertionCompletions = [InsertionCompletion]()
     private var retrievalCompletions = [RetrievalCompletion]()
     
-    func deleteCahedFeed(completion: @escaping DeletionCompletion) {
+    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         deletionCompletions.append(completion)
         receiveMessages.append(.deleteCacheFeed)
     }
