@@ -80,12 +80,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let item1 = makeItem(id: UUID(),
                              description: nil,
                              location: nil,
-                             imageURL: URL(string: "https://a-url.com")!)
+                             url: URL(string: "https://a-url.com")!)
         
         let item2 = makeItem(id: UUID(),
                              description: "a description",
                              location: "a location",
-                             imageURL: URL(string: "https://another-url.com")!)
+                             url: URL(string: "https://another-url.com")!)
         let items = [item1.model, item2.model]
         expect(sut, toCompleteWith: .success(items), when: {
             let json = makeItemJSON([item1.json, item2.json])
@@ -124,14 +124,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func makeItem(id: UUID, description: String? = nil, location: String? = nil, imageURL: URL) -> (model: FeedItem, json: [String: Any]) {
-        let feedItem = FeedItem(id: id, description: description, location: location, imageURL: imageURL)
+    private func makeItem(id: UUID, description: String? = nil, location: String? = nil, url: URL) -> (model: FeedImage, json: [String: Any]) {
+        let feedItem = FeedImage(id: id, description: description, location: location, url: url)
         
         let json = [
             "id": id.uuidString,
             "description": description,
             "location": location,
-            "image": imageURL.absoluteString
+            "image": url.absoluteString
         ].reduce(into: [String: Any]()) { (acc, e) in
             if let value = e.value { acc[e.key] = value }
         }
