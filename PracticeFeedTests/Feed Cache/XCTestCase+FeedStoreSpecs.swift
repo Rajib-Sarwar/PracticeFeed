@@ -9,6 +9,10 @@ import XCTest
 import PracticeFeed
 
 extension FeedStoreSpecs where Self: XCTestCase {
+    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: FeedStore, file: StaticString = #filePath, line: UInt = #line) {
+        expect(sut, toRetrieve: .empty, file: file, line: line)
+    }
+
     @discardableResult
     func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStore) -> Error? {
         let exp = expectation(description: "Wait for cache retrieval")
