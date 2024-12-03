@@ -8,7 +8,6 @@
 import XCTest
 import PracticeFeed
 
-typealias FailableFeedStore = FailableRetrieveFeedStoreSpecs & FailableInsertFeedStoreSpecs & FailableDeleteFeedStoreSpecs
 class CodableFeedStoreTests: XCTestCase, FailableFeedStore {
    
     override func setUp() {
