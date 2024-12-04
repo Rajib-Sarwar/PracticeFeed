@@ -53,7 +53,9 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     }
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
         
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_delete_emptiesPreviouslyInsertedCache() {
