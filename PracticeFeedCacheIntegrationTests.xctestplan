@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "945C89D1-8F46-44B7-8421-FA9EC863CF05",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:PracticeFeed.xcodeproj",
+          "identifier" : "219D1DD42CDAFD22008AAEA4",
+          "name" : "PracticeFeed"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PracticeFeed.xcodeproj",
+        "identifier" : "21E085BC2D014C15009FD215",
+        "name" : "PracticeFeedCacheIntegrationTests"
+      }
+    }
+  ],
+  "version" : 1
+}
