@@ -22,20 +22,7 @@ final class PracticeFeedCacheIntegrationTests: XCTestCase {
     
     func test_load_deliversNoItemOnEmptyCache() {
         let sut = makeSUT()
-        
-        let exp = expectation(description: "Wait for cache retrieval")
-        sut.load { result in
-            switch result {
-            case let .success(imageFeed):
-                XCTAssertEqual(imageFeed, [], "Expected empty feed")
-                 
-            case let .failure(error):
-                XCTFail("Expected successful feed result, got \(error) instead")
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        expect(sut, toLoad: [])
     }
     
     func test_load_deliversItemsSavedOnASeparateInstance() {
@@ -75,6 +62,22 @@ final class PracticeFeedCacheIntegrationTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    func expect(_ sut: LocalFeedLoader, toLoad expectedFeed: [FeedImage], file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for cache retrieval")
+        sut.load { result in
+            switch result {
+            case let .success(imageFeed):
+                XCTAssertEqual(imageFeed, [], "Expected empty feed")
+                 
+            case let .failure(error):
+                XCTFail("Expected successful feed result, got \(error) instead")
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func setupEmptyStoreState() {
