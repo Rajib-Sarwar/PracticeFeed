@@ -10,6 +10,16 @@ import PracticeFeed
 
 final class PracticeFeedCacheIntegrationTests: XCTestCase {
 
+    override func setUp() {
+        super.setUp()
+        deletestoreArtifact()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        deletestoreArtifact()
+    }
+    
     func test_load_deliversNoItemOnEmptyCache() {
         let sut = makeSUT()
         
@@ -38,6 +48,18 @@ final class PracticeFeedCacheIntegrationTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func setupEmptyStoreState() {
+        deletestoreArtifact()
+    }
+    
+    private func undoStoreSideEffects() {
+        deletestoreArtifact()
+    }
+    
+    private func deletestoreArtifact() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL)
     }
     
     private var testSpecificStoreURL: URL {
