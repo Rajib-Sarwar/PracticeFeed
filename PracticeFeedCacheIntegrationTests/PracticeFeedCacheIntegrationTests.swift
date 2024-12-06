@@ -51,6 +51,30 @@ final class PracticeFeedCacheIntegrationTests: XCTestCase {
         wait(for: [loadExp], timeout: 1.0)
     }
     
+    func test_load_overrridesItemsSavedOnASeparateInstance() {
+        let sutToPerformFirstSave = makeSUT()
+        let sutToPerformLastSave = makeSUT()
+        let sutToPerformLoad = makeSUT()
+        let firstFeed = uniqueImageFeed().models
+        let latestFeed = uniqueImageFeed().models
+        
+        let saveExp1 = expectation(description: "Wait for save completion")
+        sutToPerformFirstSave.save(firstFeed) { saveError in
+            XCTAssertNil(saveError, "Expected to save feed successfully")
+            saveExp1.fulfill()
+        }
+        wait(for: [saveExp1], timeout: 1.0)
+        
+        let saveExp2 = expectation(description: "Wait for save completion")
+        sutToPerformLastSave.save(latestFeed) { saveError in
+            XCTAssertNil(saveError, "Expected to save feed successfully")
+            saveExp2.fulfill()
+        }
+        wait(for: [saveExp2], timeout: 1.0)
+        
+        expect(sutToPerformLoad, toLoad: latestFeed)
+    }
+    
 
     // MARK: Helpers
     
@@ -69,7 +93,7 @@ final class PracticeFeedCacheIntegrationTests: XCTestCase {
         sut.load { result in
             switch result {
             case let .success(imageFeed):
-                XCTAssertEqual(imageFeed, [], "Expected empty feed")
+                XCTAssertEqual(imageFeed, expectedFeed, "Expected empty feed")
                  
             case let .failure(error):
                 XCTFail("Expected successful feed result, got \(error) instead")
