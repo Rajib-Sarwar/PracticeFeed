@@ -8,7 +8,7 @@
 import Foundation
 import PracticeFeed
 
-internal class FeedStoreSpy: FeedStore {
+class FeedStoreSpy: FeedStore {
     
     enum ReceivedMessages: Equatable {
         case deleteCacheFeed
