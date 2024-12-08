@@ -8,7 +8,7 @@
 import XCTest
 import PracticeFeed
 
-class CacheFeedUseCase: XCTestCase {
+class CacheFeedUseCaseTests: XCTestCase {
     
     func test_init_doesNotStoreMessagesUponCreation() {
         let (_, store) = makeSUT()
@@ -115,8 +115,10 @@ class CacheFeedUseCase: XCTestCase {
         let exp = expectation(description: "Wait to save completion")
         
         var receivedError: Error?
-        sut.save([uniqueImage()]) { error in
-            receivedError = error
+        sut.save([uniqueImage()]) { result in
+            if case let Result.failure(error) = result {
+                receivedError = error
+            }
             exp.fulfill()
         }
         action()
