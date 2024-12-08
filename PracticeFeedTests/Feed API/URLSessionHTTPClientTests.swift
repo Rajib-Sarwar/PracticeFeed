@@ -8,7 +8,7 @@
 import XCTest
 import PracticeFeed
 
-class URLSessionHTTPClientSpy: XCTestCase {
+class URLSessionHTTPClientTests: XCTestCase {
     
     override class func setUp() {
         super.setUp()
