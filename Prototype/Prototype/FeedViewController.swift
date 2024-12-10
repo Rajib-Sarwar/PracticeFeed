@@ -14,6 +14,6 @@ final class FeedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "FeedimageCell")!
+        return tableView.dequeueReusableCell(withIdentifier: "FeedImageCell")!
     }
 }
