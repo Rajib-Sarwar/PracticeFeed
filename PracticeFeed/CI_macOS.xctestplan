@@ -23,6 +23,11 @@
         }
       ]
     },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PracticeFeed.xcodeproj",
+      "identifier" : "219D1DD42CDAFD22008AAEA4",
+      "name" : "PracticeFeed"
+    },
     "testExecutionOrdering" : "random"
   },
   "testTargets" : [

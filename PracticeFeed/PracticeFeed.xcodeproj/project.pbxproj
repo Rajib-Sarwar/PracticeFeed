@@ -120,6 +120,7 @@
 		21C745BF2D07FF2100B11A87 /* PracticeFeediOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeFeediOSTests.swift; sourceTree = "<group>"; };
 		21C745C82D07FFB400B11A87 /* PracticeFeediOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PracticeFeediOS.xctestplan; sourceTree = "<group>"; };
 		21C745C92D09161200B11A87 /* PracticeFeedAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PracticeFeedAPIEndToEndTests.xctestplan; sourceTree = "<group>"; };
+		21C745CA2D09194F00B11A87 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_iOS.xctestplan; sourceTree = "<group>"; };
 		21D29F6A2CE5A25C00ECFDEC /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		21E085AB2CFEB53A009FD215 /* XCTestCase+FailableRetrieveFeedStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableRetrieveFeedStoreSpecs.swift"; sourceTree = "<group>"; };
 		21E085AD2CFEB5CC009FD215 /* XCTestCase+FailableInsertFeedStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertFeedStoreSpecs.swift"; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 		219D1DCB2CDAFD22008AAEA4 = {
 			isa = PBXGroup;
 			children = (
+				21C745CA2D09194F00B11A87 /* CI_iOS.xctestplan */,
 				21C745C92D09161200B11A87 /* PracticeFeedAPIEndToEndTests.xctestplan */,
 				21C745C82D07FFB400B11A87 /* PracticeFeediOS.xctestplan */,
 				21E085C72D014C58009FD215 /* PracticeFeedCacheIntegrationTests.xctestplan */,
@@ -1002,7 +1004,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1035,7 +1037,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

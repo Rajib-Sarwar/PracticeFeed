@@ -14,6 +14,6 @@ script:
       -scheme "CI_iOS" \
       CODE_SIGN_IDENTITY="" CODE_SIGN_REQUIRED=NO \
       -sdk iphonesimulator \
-      -destination "platform=iOS Simulator,OS=12.2,name=iPhone 14" \
+      -destination "platform=iOS Simulator,OS=14.0,name=iPhone 15" \
       ONLY_ACTIVE_ARCH=YES
 
