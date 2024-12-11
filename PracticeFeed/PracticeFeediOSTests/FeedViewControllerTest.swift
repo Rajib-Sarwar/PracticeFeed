@@ -22,11 +22,11 @@ class FeedViewController: UITableViewController {
 
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        refreshControl?.beginRefreshing()
         load()
     }
     
     @objc private func load() {
+        refreshControl?.beginRefreshing()
         loader?.load { [weak self] _ in
             self?.refreshControl?.endRefreshing()
         }
@@ -35,64 +35,34 @@ class FeedViewController: UITableViewController {
 
 class FeedViewControllerTest: XCTestCase {
     
-    func test_init_doesNotLoadFeed() {
-        let (_, loader) = makeSUT()
-        
-        XCTAssertEqual(loader.loadCallCount, 0)
-    }
-    
-    func test_viewDidLoad_loadsFeed() {
+    func test_loadFeedActions_requestFeedFromLoader() {
         let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.loadCallCount, 0, "Expect no loading requests before view is loaded")
         
-        XCTAssertEqual(loader.loadCallCount, 1)
-    }
-    
-    func test_userInitiatedFeedReload_loadsFeed() {
-        let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.loadCallCount, 1, "Expect a loading requests before view is loaded")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadCallCount, 2)
+        XCTAssertEqual(loader.loadCallCount, 2, "Expect another loading requests once user initiates a loaded")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadCallCount, 3)
+        XCTAssertEqual(loader.loadCallCount, 3, "Expect a third loading requests once user initiates another loaded")
     }
     
-    func test_viewDidLoad_showLoadingIndicator() {
-        let (sut, _) = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        
-        
-        XCTAssertTrue(sut.isShowLoadingIndicator)
-    }
-    
-    func test_viewDidLoad_hidesLoadingIndicatorOnLoaderCompletion() {
+    func test_loadingFeedIndicator_isVisibleWhileLoadingFeed() {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        loader.completeFeedLoading()
-        
-        
-        XCTAssertFalse(sut.isShowLoadingIndicator)
-    }
-     
-    func test_userInitiatedFeedReload_showLoadingIndicator() {
-        let (sut, _) = makeSUT()
-        
+        XCTAssertTrue(sut.isShowLoadingIndicator, "Expect loading indicator before view is loaded")
+
+        loader.completeFeedLoading(at: 0)
+        XCTAssertFalse(sut.isShowLoadingIndicator, "Expect no loading indicator once loading is completed")
+
         sut.simulateUserInitiatedFeedReload()
-        
-        XCTAssertTrue(sut.isShowLoadingIndicator)
-    }
-    
-    func test_userInitiatedFeedReload_hidesLoadingIndicatorOnLoaderCompletion() {
-        let (sut, loader) = makeSUT()
-        
-        sut.simulateUserInitiatedFeedReload()
-        loader.completeFeedLoading()
-        
-        XCTAssertFalse(sut.isShowLoadingIndicator)
+        XCTAssertTrue(sut.isShowLoadingIndicator, "Expect loading indicator once user initiates a reload")
+
+        loader.completeFeedLoading(at: 1)
+        XCTAssertFalse(sut.isShowLoadingIndicator, "Expect no loading indicator once user initiated loading is completed")
     }
     
     // MARK: - Helpers
@@ -116,8 +86,8 @@ class FeedViewControllerTest: XCTestCase {
             completions.append(completion)
         }
         
-        func completeFeedLoading() {
-            completions[0](.success([]))
+        func completeFeedLoading(at index: Int) {
+            completions[index](.success([]))
         }
     }
 }
