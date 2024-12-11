@@ -17,7 +17,13 @@
           "name" : "PracticeFeediOS"
         }
       ]
-    }
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PracticeFeed.xcodeproj",
+      "identifier" : "21C745B22D07FF2000B11A87",
+      "name" : "PracticeFeediOS"
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {
