@@ -15,6 +15,11 @@
           "containerPath" : "container:PracticeFeed.xcodeproj",
           "identifier" : "219D1DD42CDAFD22008AAEA4",
           "name" : "PracticeFeed"
+        },
+        {
+          "containerPath" : "container:PracticeFeed.xcodeproj",
+          "identifier" : "21C745B22D07FF2000B11A87",
+          "name" : "PracticeFeediOS"
         }
       ]
     },
