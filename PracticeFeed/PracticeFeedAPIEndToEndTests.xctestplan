@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "37D09E47-6445-4F02-8193-B10C1A741E7D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PracticeFeed.xcodeproj",
+      "identifier" : "219D1DD42CDAFD22008AAEA4",
+      "name" : "PracticeFeed"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PracticeFeed.xcodeproj",
+        "identifier" : "213643822CE6A47E00FCF14E",
+        "name" : "PracticeFeedAPIEndToEndTests"
+      }
+    }
+  ],
+  "version" : 1
+}

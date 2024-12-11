@@ -22,7 +22,7 @@
 		<key>PracticeFeedAPIEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>5</integer>
 		</dict>
 		<key>PracticeFeedCacheIntegrationTests.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,6 +37,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>213643822CE6A47E00FCF14E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>219D1DD42CDAFD22008AAEA4</key>
 		<dict>
 			<key>primary</key>
