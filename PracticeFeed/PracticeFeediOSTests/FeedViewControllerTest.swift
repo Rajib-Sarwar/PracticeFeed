@@ -30,16 +30,16 @@ class FeedViewControllerTest: XCTestCase {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        XCTAssertTrue(sut.isShowLoadingIndicator, "Expect loading indicator before view is loaded")
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect loading indicator before view is loaded")
         
         loader.completeFeedLoading(at: 0)
-        XCTAssertFalse(sut.isShowLoadingIndicator, "Expect no loading indicator once loading is completed")
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading completes successfully")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertTrue(sut.isShowLoadingIndicator, "Expect loading indicator once user initiates a reload")
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expect loading indicator once user initiates a reload")
         
-        loader.completeFeedLoading(at: 1)
-        XCTAssertFalse(sut.isShowLoadingIndicator, "Expect no loading indicator once user initiated loading is completed")
+        loader.completeFeedLoadingWithError(at: 1)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
     }
     
     func test_loadFeedCompletion_rendersuccessfullyLoadedFeed() {
@@ -139,7 +139,7 @@ private extension FeedViewController {
         refreshControl?.simulatePullToRefresh()
     }
     
-    var isShowLoadingIndicator: Bool {
+    var isShowingLoadingIndicator: Bool {
         return refreshControl?.isRefreshing == true
     }
     
