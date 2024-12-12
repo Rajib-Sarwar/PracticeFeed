@@ -31,7 +31,13 @@
     "testExecutionOrdering" : "random"
   },
   "testTargets" : [
-
+    {
+      "target" : {
+        "containerPath" : "container:PracticeFeed.xcodeproj",
+        "identifier" : "21C745B92D07FF2000B11A87",
+        "name" : "PracticeFeediOSTests"
+      }
+    }
   ],
   "version" : 1
 }
